@@ -18,8 +18,13 @@ class TaskList extends React.Component {
         } else {
             taskChecked.MarkedAsDone = true;
         }
-        const newValue = {MarkedAsDone: taskChecked.MarkedAsDone};
-        this.props.updateTask(id, newValue);
+        const values = {
+            Id: id,
+            Title: taskChecked.Title,
+            Desc: taskChecked.Desc,
+            MarkedAsDone: taskChecked.MarkedAsDone
+        };
+        this.props.updateTask(id, values);
     }
 
     // Helper function to sort tasks on page from newer to older

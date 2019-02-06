@@ -123,7 +123,7 @@ export const createTask = (formValues) => {
 
 export const updateTask = (id, formValues) => {
     return async function(dispatch) {
-        return await todoApi.put(`/Tasks/${id}`, {formValues}, {
+        return await todoApi.put(`/Tasks/${id}`, formValues, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
             }

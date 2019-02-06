@@ -6,11 +6,17 @@ import TaskForm from './TaskForm';
 
 class TaskUpdate extends React.Component {
     componentDidMount() {
-        this.props.fetchTask(this.props.match.params.id)
+        this.props.fetchTask(this.props.match.params.id);
     }
 
     onSubmit = (formValues) => {
-        this.props.updateTask(this.props.match.params.id, formValues);
+        const values = {
+            Id: this.props.task.Id,
+            Title: formValues.Title,
+            Desc: formValues.Desc,
+            MarkedAsDone: this.props.task.MarkedAsDone
+        };
+        this.props.updateTask(this.props.match.params.id, values);
     }
 
     render() {
