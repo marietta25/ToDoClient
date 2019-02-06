@@ -46,10 +46,17 @@ export const tasksReducer = (state = {}, action) => {
     }
 };
 
-export default combineReducers({
+const appReducer = combineReducers({
     errors: errorReducer,
     auth: authReducer,
     user: userReducer,
     tasks: tasksReducer,
     form: formReducer
 });
+
+export default (state, action) => {
+    if (action.type === 'LOG_OUT') {
+        state = undefined;
+    }
+    return appReducer(state, action);
+};
