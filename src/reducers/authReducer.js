@@ -7,7 +7,7 @@ export default (state = INITIAL_STATE, action) => {
         case 'LOG_IN':
             return { ...state, isSignedIn: true };
         case 'LOG_OUT':
-            return { ...state, isSignedIn: false }
+            return { ...state, isSignedIn: false };
         default:
             return state;
     }

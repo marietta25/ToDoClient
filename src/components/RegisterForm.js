@@ -2,14 +2,12 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createUser, logIn } from '../actions';
-import history from '../history';
 
 class RegisterForm extends React.Component {
     
     // Get user data on submitting the form
     onSubmit = async (formValues) => {
         await this.props.createUser(formValues);
-        history.push('/login');
     }
 
     renderError ({ error, touched}) {
@@ -49,16 +47,10 @@ class RegisterForm extends React.Component {
     }
 }
 
-// Prevent submitting new user without first name, last name, username and password
+// Prevent submitting new user without username and password
 const validate = (formValues) => {
     const errors = {};
 
-    if (!formValues.firstname) {
-        errors.firstname = "Please enter your first name";
-    }
-    if (!formValues.lastname) {
-        errors.lastname = "Please enter your last name";
-    }
     if (!formValues.username) {
         errors.username = "Please enter username";
     }

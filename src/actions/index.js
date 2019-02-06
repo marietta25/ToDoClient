@@ -45,9 +45,8 @@ export const createUser = (formValues) => {
             Password: formValues.password,
             ConfirmPassword: formValues.passwordConfirm
         }).then((response) => {
-            sessionStorage.setItem('jwtToken', response.data.access_token);
-            sessionStorage.setItem('isSignedIn', true);
             dispatch({ type: 'CREATE_USER', payload: response.data });
+            history.push('/login');
         }).catch((err) => {
             dispatch({ type: 'ERROR', payload: err.response.data });
         });
