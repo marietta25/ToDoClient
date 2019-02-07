@@ -2,8 +2,9 @@ import _ from 'lodash';
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import authReducer from './authReducer';
+import loaderReducer from './loaderReducer';
 
-export const errorReducer = (state = {}, action) => {
+/* export const errorReducer = (state = {}, action) => {
     switch (action.type) {
         case 'ERROR':
         if (action.payload.Message) {
@@ -14,7 +15,7 @@ export const errorReducer = (state = {}, action) => {
         default:
             return state;
     }
-};
+}; */
 
 export const userReducer = (state = {}, action) => {    
     switch (action.type) {
@@ -47,10 +48,11 @@ export const tasksReducer = (state = {}, action) => {
 };
 
 const appReducer = combineReducers({
-    errors: errorReducer,
+    //errors: errorReducer,
     auth: authReducer,
     user: userReducer,
     tasks: tasksReducer,
+    loader: loaderReducer,
     form: formReducer
 });
 

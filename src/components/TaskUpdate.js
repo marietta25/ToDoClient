@@ -23,6 +23,9 @@ class TaskUpdate extends React.Component {
         if (!this.props.task) {
             return <div>Loading...</div>
         }
+        if (this.props.loader.loading) {
+            return <div>Saving changes...</div>;
+        }
         return (
             <div>
                 <h3>Update Task</h3>
@@ -33,7 +36,7 @@ class TaskUpdate extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return { task: state.tasks[ownProps.match.params.id]};
+    return { task: state.tasks[ownProps.match.params.id], loader: state.loader };
 };
 
 export default connect(mapStateToProps, { fetchTask, updateTask })(TaskUpdate);

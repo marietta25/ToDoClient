@@ -68,12 +68,18 @@ class Auth extends React.Component {
     }
 
     renderErrors() {
-        if (this.props.errors !== {}) {
-            return this.props.errors.map(err => {
-                return (
-                    <p className="ui negative message">{err}</p>
-                );
-            });
+        let errorText = null;
+        if (this.props.loader.error) {
+            if (this.props.loader.error.error_description) {
+                errorText = this.props.loader.error.error_description;
+            } else if (this.props.loader.error.Message) {
+                errorText = this.props.loader.error.Message;
+            } else {
+                errorText = 'Oops! Something went wrong';
+            }
+            return (
+                <p className="ui negative message">{errorText}</p>
+            );
         }
         return null;
     }
@@ -94,7 +100,7 @@ const mapStateToProps = (state) => {
     return {
         isSignedIn: state.auth.isSignedIn,
         user: state.user,
-        errors: Object.values(state.errors)
+        loader: state.loader
     };
 };
 

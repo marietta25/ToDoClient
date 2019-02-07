@@ -9,6 +9,9 @@ class TaskCreate extends React.Component {
     }
 
     render() {
+        if (this.props.loader.loading) {
+            return <div>Creating new task...</div>;
+        }
         return (
             <div>
                 <h3>Create Task</h3>
@@ -18,4 +21,8 @@ class TaskCreate extends React.Component {
     }
 }
 
-export default connect(null, { createTask })(TaskCreate);
+const mapStateToProps = (state) => {
+    return { loader: state.loader };
+};
+
+export default connect(mapStateToProps, { createTask })(TaskCreate);

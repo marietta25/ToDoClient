@@ -38,6 +38,9 @@ class TaskList extends React.Component {
 
     // Render task list and buttons for viewing, editing, deleting
     renderList() {
+        if (this.props.loader.loading) {
+            return <div>Getting your tasks...</div>;
+        }
         const sortedTasks = this.props.tasks.sort(this.compare);
         return sortedTasks.map(task => {
             return (
@@ -95,7 +98,8 @@ class TaskList extends React.Component {
 const mapStateToProps = (state) => {
     return {
         tasks: Object.values(state.tasks), 
-        task: state.task 
+        task: state.task,
+        loader: state.loader
     };
 }
 

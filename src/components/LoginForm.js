@@ -9,6 +9,7 @@ class LoginForm extends React.Component {
     // Get user data on submitting form, set state isSignedIn to true
     onSubmit = async (formValues) => {
         await this.props.fetchUser(formValues);
+
         if (sessionStorage.isSignedIn === "true") {
             await this.props.getUserInfo();
             await this.props.logIn();
@@ -39,6 +40,9 @@ class LoginForm extends React.Component {
     
     // Render login form
     render() {
+        if (this.props.loader.loading) {
+            return <div>Logging in...</div>;
+        }
         return (
             <div>
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
@@ -65,7 +69,7 @@ const validate = (formValues) => {
 };
 
 const mapStateToProps = (state) => {
-    return { isSignedIn: state.auth.isSignedIn, user: state.user };
+    return { isSignedIn: state.auth.isSignedIn, user: state.user, loader: state.loader };
 };
 
 const formWrapped = reduxForm({

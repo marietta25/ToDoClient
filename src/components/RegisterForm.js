@@ -32,16 +32,19 @@ class RegisterForm extends React.Component {
     
     // Render register form
     render() {
+        if (this.props.loader.loading) {
+            return <div>Creating user profile...</div>;
+        }
         return (
             <div>
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
-                <Field name="firstname" component={this.renderInput} label="First name" type="text" />
-                <Field name="lastname" component={this.renderInput} label="Last name" type="text" />
-                <Field name="username" component={this.renderInput} label="Username" type="text" />
-                <Field name="password" component={this.renderInput} label="Password" type="password" />
-                <Field name="passwordConfirm" component={this.renderInput} label="Confirm Password" type="password" />
-                <button className="ui button primary">Register</button>
-            </form>
+                <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
+                    <Field name="firstname" component={this.renderInput} label="First name" type="text" />
+                    <Field name="lastname" component={this.renderInput} label="Last name" type="text" />
+                    <Field name="username" component={this.renderInput} label="Username" type="text" />
+                    <Field name="password" component={this.renderInput} label="Password" type="password" />
+                    <Field name="passwordConfirm" component={this.renderInput} label="Confirm Password" type="password" />
+                    <button className="ui button primary">Register</button>
+                </form>
             </div>
         );
     }
@@ -64,7 +67,7 @@ const validate = (formValues) => {
 };
 
 const mapStateToProps = (state) => {
-    return { isSignedIn: state.auth.isSignedIn };
+    return { isSignedIn: state.auth.isSignedIn, loader: state.loader };
 };
 
 const formWrapped = reduxForm({
