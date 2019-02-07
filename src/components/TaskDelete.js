@@ -34,27 +34,22 @@ class TaskDelete extends React.Component {
     
     // Render modal
     render() {
-        if (this.props.isSignedIn) {
-            return (
-                <div>
-                    <Modal 
-                        title="Delete task"
-                        content={this.renderContent()}
-                        actions={this.renderActions()}
-                        onDismiss={() => history.push('/tasks')}
-                    />
-                </div>
-            );
-        } else {
-            return null;
-        }
+        return (
+            <div>
+                <Modal 
+                    title="Delete task"
+                    content={this.renderContent()}
+                    actions={this.renderActions()}
+                    onDismiss={() => history.push('/tasks')}
+                />
+            </div>
+        );
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        task: state.tasks[ownProps.match.params.id],
-        isSignedIn: state.auth.isSignedIn
+        task: state.tasks[ownProps.match.params.id]
     }
 };
 

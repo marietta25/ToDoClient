@@ -9,21 +9,13 @@ class TaskCreate extends React.Component {
     }
 
     render() {
-        if (this.props.isSignedIn) {
-            return (
-                <div>
-                    <h3>Create Task</h3>
-                    <TaskForm onSubmit={this.onSubmit} />
-               </div>
-            );
-        }
-        
-        return null;
+        return (
+            <div>
+                <h3>Create Task</h3>
+                <TaskForm onSubmit={this.onSubmit} />
+            </div>
+        );
     }
 }
 
-const mapStateToProps = (state) => {
-    return { isSignedIn: state.auth.isSignedIn }
-};
-
-export default connect(mapStateToProps, { createTask })(TaskCreate);
+export default connect(null, { createTask })(TaskCreate);

@@ -29,6 +29,9 @@ export const getUserInfo = () => {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
             }
         }).then((response) => {
+            sessionStorage.setItem('email', response.data.Email);
+            sessionStorage.setItem('firstName', response.data.Firstname);
+            sessionStorage.setItem('lastName', response.data.Lastname);
             dispatch({ type: 'GET_USERINFO', payload: response.data });
         }).catch((err) => {
             dispatch({ type: 'ERROR', payload: err.response.data });
@@ -61,8 +64,11 @@ export const logIn = (token) => {
 };
 
 export const logOut = () => {
-    sessionStorage.clear('jwtToken');
+    sessionStorage.setItem('jwtToken', null);
     sessionStorage.setItem('isSignedIn', false);
+    sessionStorage.setItem('email', null);
+    sessionStorage.setItem('firstName', null);
+    sessionStorage.setItem('lastName', null);
     history.push('/');
     return {
         type: 'LOG_OUT'
@@ -91,7 +97,6 @@ export const fetchTasks = () => {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
             } 
         }).then((response) => {
-            console.log('tasks response ', response);
             dispatch({ type: 'FETCH_TASKS', payload: response.data });
         }).catch((err) => {
             dispatch({ type: 'ERROR', payload: err.response.data });

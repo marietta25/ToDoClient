@@ -9,7 +9,7 @@ class Auth extends React.Component {
     }
 
     onAuthChange = (isSignedIn) => {
-        if (isSignedIn === true) {
+        if (isSignedIn === 'true') {
             this.props.logIn();
             
         } else {
@@ -49,12 +49,15 @@ class Auth extends React.Component {
     // Show user's name and username when logged in
     renderUserData() {
         if (this.props.isSignedIn) {
-            
             let userHeader;
-            if (!this.props.user.info.Firstname || !this.props.user.info.Lastname) {
-                userHeader = `${this.props.user.userName}`;
+            if (sessionStorage.firstName === 'null' && sessionStorage.lastName === 'null') {
+                userHeader = `${sessionStorage.email}`;
+            } else if (sessionStorage.firstName === 'null') {
+                userHeader = `${sessionStorage.lastName} ${sessionStorage.email}`;
+            } else if (sessionStorage.lastName === 'null') {
+                userHeader = `${sessionStorage.firstName} ${sessionStorage.email}`;
             } else {
-                userHeader = `${this.props.user.info.Firstname} ${this.props.user.info.Lastname} (${this.props.user.userName})`;
+                userHeader = `${sessionStorage.firstName} ${sessionStorage.lastName} (${sessionStorage.email})`;
             }
             return (
                 <div>{userHeader}</div>

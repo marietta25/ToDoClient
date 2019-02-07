@@ -10,6 +10,7 @@ import TaskDelete from './TaskDelete';
 import Auth from './Auth';
 import TaskUpdate from './TaskUpdate';
 import history from '../history';
+import { PrivateRoute } from './PrivateRoute';
 
 
 class App extends React.Component {
@@ -20,11 +21,11 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/login" exact component={LoginForm} />
                     <Route path="/register" exact component={RegisterForm} />
-                    <Route path="/tasks" exact component={TaskList} />
-                    <Route path="/tasks/new" exact component={TaskCreate} />
-                    <Route path="/tasks/view/:id" exact component={TaskItem} />
-                    <Route path="/tasks/update/:id" exact component={TaskUpdate} />
-                    <Route path="/tasks/delete/:id" exact component={TaskDelete} />
+                    <PrivateRoute path="/tasks" exact component={TaskList} />
+                    <PrivateRoute path="/tasks/new" exact component={TaskCreate} />
+                    <PrivateRoute path="/tasks/view/:id" exact component={TaskItem} />
+                    <PrivateRoute path="/tasks/update/:id" exact component={TaskUpdate} />
+                    <PrivateRoute path="/tasks/delete/:id" exact component={TaskDelete} />
                 </Switch>
             </div>
         );

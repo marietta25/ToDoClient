@@ -78,27 +78,22 @@ class TaskList extends React.Component {
     }
 
     render() {
-        if (this.props.isSignedIn) {
-            return (
-                <div>
-                    <div style={{ marginBottom: 30 }}>
-                        <Link to={"/tasks/new"} className="ui labeled icon button primary">
-                            <i className="plus icon" />
-                            Create new task
-                        </Link>
-                    </div>
-                    <div className="ui celled list">{this.renderList()}</div>
+        return (
+            <div>
+                <div style={{ marginBottom: 30 }}>
+                    <Link to={"/tasks/new"} className="ui labeled icon button primary">
+                        <i className="plus icon" />
+                        Create new task
+                    </Link>
                 </div>
-            );
-        }
-        
-        return null;
+                <div className="ui celled list">{this.renderList()}</div>
+            </div>
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        isSignedIn: state.auth.isSignedIn,
         tasks: Object.values(state.tasks), 
         task: state.task 
     };
