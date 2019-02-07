@@ -42,7 +42,7 @@ const validate = (formValues) => {
     const errors = {};
 
     if (!formValues.Title) {
-        errors.title = "Please enter task title";
+        errors.Title = "Please enter task title";
     }
     return errors;
 };
