@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createTask } from '../actions';
 import TaskForm from './TaskForm';
+import Loader from './Loader';
 
 class TaskCreate extends React.Component {
     onSubmit = (formValues) => {
@@ -10,7 +11,7 @@ class TaskCreate extends React.Component {
 
     render() {
         if (this.props.loader.loading) {
-            return <div>Creating new task...</div>;
+            return <Loader message="Creating new task..." />;
         }
         return (
             <div>

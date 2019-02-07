@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createUser, logIn } from '../actions';
+import Loader from './Loader';
 
 class RegisterForm extends React.Component {
     
@@ -33,7 +34,7 @@ class RegisterForm extends React.Component {
     // Render register form
     render() {
         if (this.props.loader.loading) {
-            return <div>Creating user profile...</div>;
+            return <Loader message="Creating user profile..." />;
         }
         return (
             <div>

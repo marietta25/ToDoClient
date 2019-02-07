@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTasks, updateTask } from '../actions';
 import { Link } from 'react-router-dom';
+import Loader from './Loader';
 
 class TaskList extends React.Component {
     componentDidMount() {
@@ -39,7 +40,7 @@ class TaskList extends React.Component {
     // Render task list and buttons for viewing, editing, deleting
     renderList() {
         if (this.props.loader.loading) {
-            return <div>Getting your tasks...</div>;
+            return <Loader message="Getting your tasks..." />;
         }
         const sortedTasks = this.props.tasks.sort(this.compare);
         return sortedTasks.map(task => {

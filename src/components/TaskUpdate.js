@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTask, updateTask } from '../actions';
 import TaskForm from './TaskForm';
+import Loader from './Loader';
 
 class TaskUpdate extends React.Component {
     componentDidMount() {
@@ -24,7 +25,7 @@ class TaskUpdate extends React.Component {
             return <div>Loading...</div>
         }
         if (this.props.loader.loading) {
-            return <div>Saving changes...</div>;
+            return <Loader message="Saving changes..." />;
         }
         return (
             <div>

@@ -161,12 +161,17 @@ export const updateTask = (id, formValues) => {
 
 export const deleteTask = (id) => {
     return async dispatch => {
-        await todoApi.delete(`/Tasks/${id}`, {
+        dispatch(requestBegin());
+        return await todoApi.delete(`/Tasks/${id}`, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
             }
+        }).then(() => {
+            dispatch(requestSuccess());
+            dispatch({ type: 'DELETE_TASK', payload: id});
+            history.push('/tasks'); 
+        }).catch((err) => {
+            dispatch(requestFailure(err.response.data));
         });
-        dispatch({ type: 'DELETE_TASK', payload: id});
-        history.push('/tasks');       
     }
 };

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from './Modal';
 import history from '../history';
 import { fetchTask, deleteTask } from '../actions';
-
+import Loader from './Loader';
 
 class TaskDelete extends React.Component {
     componentDidMount() {
@@ -34,6 +34,9 @@ class TaskDelete extends React.Component {
     
     // Render modal
     render() {
+        if (this.props.loader.loading) {
+            return <Loader message="Deleting task..." />;
+        }
         return (
             <div>
                 <Modal 
@@ -49,7 +52,8 @@ class TaskDelete extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        task: state.tasks[ownProps.match.params.id]
+        task: state.tasks[ownProps.match.params.id],
+        loader: state.loader
     }
 };
 

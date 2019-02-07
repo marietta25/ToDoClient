@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchUser, logIn, getUserInfo } from '../actions';
+import Loader from './Loader';
 import history from '../history';
 
 class LoginForm extends React.Component {
@@ -41,7 +42,7 @@ class LoginForm extends React.Component {
     // Render login form
     render() {
         if (this.props.loader.loading) {
-            return <div>Logging in...</div>;
+            return <Loader message="Logging in..." />;
         }
         return (
             <div>
