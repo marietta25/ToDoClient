@@ -21,6 +21,16 @@ class Auth extends React.Component {
         this.props.logOut();
     }
 
+    // Join model state errors into a string
+    iterateErrors = (modelstate) => {
+        let errors = '';
+        Object.values(modelstate).forEach(error => {
+            let stringerror = error.join('\n');
+            errors += stringerror + '\n';
+        });
+        return errors;
+    }
+
     // Render logout button when user is logged in
     // Render log in and register buttons when user is logged out
     renderAuth() {
@@ -69,16 +79,19 @@ class Auth extends React.Component {
 
     renderErrors() {
         let errorText = null;
-        if (this.props.loader.error) {
-            if (this.props.loader.error.error_description) {
-                errorText = this.props.loader.error.error_description;
-            } else if (this.props.loader.error.Message) {
-                errorText = this.props.loader.error.Message;
+        const { error } = this.props.loader;
+        if (error) {
+            if (error.error_description) {
+                errorText = error.error_description;
+            } else if (error.ModelState) {
+                errorText = this.iterateErrors(error.ModelState);
+            } else if (error.response.data) {
+                errorText = error.response.data;
             } else {
                 errorText = 'Oops! Something went wrong';
             }
             return (
-                <p className="ui negative message">{errorText}</p>
+                <p className="ui negative message" style={{ whiteSpace: 'pre-wrap' }}>{errorText}</p>
             );
         }
         return null;
