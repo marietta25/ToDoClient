@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Modal from './Modal';
 import history from '../history';
 import { fetchTask } from '../actions';
+import Loader from './Loader';
 
 
 class TaskItem extends React.Component {
@@ -37,6 +38,12 @@ class TaskItem extends React.Component {
     
     // Use modal for viewing task title/description
     render() {
+        if (this.props.loader.loading) {
+            return <Loader />;
+        }
+        if (this.props.loader.error) {
+            return null;
+        }
         return (
             <div>
                 <Modal 
@@ -51,7 +58,7 @@ class TaskItem extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return { task: state.tasks[ownProps.match.params.id] }
+    return { task: state.tasks[ownProps.match.params.id], loader: state.loader }
 };
 
 export default connect(mapStateToProps, { fetchTask })(TaskItem);

@@ -87,15 +87,18 @@ export const logOut = () => {
 
 export const fetchTask = (id) => {
     return async function(dispatch) {
+        dispatch(requestBegin());
         return await todoApi.get(`/Tasks/${id}`, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
             },
             
         }).then((response) => {
+            dispatch(requestSuccess());
             dispatch({ type: 'FETCH_TASK', payload: response.data });
         }).catch((err) => {
-            dispatch({ type: 'ERROR', payload: err.response.data });
+            //dispatch({ type: 'ERROR', payload: err.response.data });
+            dispatch(requestFailure(err));
         });
     };
 };
