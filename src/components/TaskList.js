@@ -43,6 +43,11 @@ class TaskList extends React.Component {
             return <Loader message="Getting your tasks..." />;
         }
         const sortedTasks = this.props.tasks.sort(this.compare);
+        
+        if (sortedTasks.length < 1) {
+            return <div>You don't have any tasks yet.</div>;
+        }
+
         return sortedTasks.map(task => {
             return (
                 <div className="item" key={task.Id}>
