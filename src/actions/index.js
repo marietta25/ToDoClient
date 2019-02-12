@@ -7,8 +7,7 @@ export const fetchUser = (formValues) => {
     let encodedCreds = "grant_type=password&username=" + encodeURIComponent(formValues.username) + "&password=" + encodeURIComponent(formValues.password);
     return async function(dispatch) {
         dispatch(requestBegin());
-        return await todoApi.post('/Account/Login', encodedCreds,
-        {
+        return await todoApi.post('/Account/Login', encodedCreds, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -28,8 +27,7 @@ export const fetchUser = (formValues) => {
 export const getUserInfo = () => {
     return async function(dispatch) {
         dispatch(requestBegin());
-        return await todoApi.get('/Account/UserInfo',
-        {
+        return await todoApi.get('/Account/UserInfo',{
             headers: {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
             }
@@ -66,6 +64,7 @@ export const createUser = (formValues) => {
 };
 
 export const logIn = (token) => {
+    history.push('/');
     return {
         type: 'LOG_IN',
         payload: token
@@ -90,8 +89,7 @@ export const fetchTask = (id) => {
         return await todoApi.get(`/Tasks/${id}`, {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.jwtToken}`
-            },
-            
+            }
         }).then((response) => {
             dispatch(requestSuccess());
             dispatch({ type: 'FETCH_TASK', payload: response.data });
@@ -134,11 +132,11 @@ export const createTask = (formValues) => {
             dispatch(requestSuccess());
             dispatch({ type: 'CREATE_TASK', payload: response.data});
             toast.success('New task added to list!');
-            history.push('/tasks');
+            history.push('/');
         }).catch((err) => {
             dispatch(requestFailure(err));
         });
-    }
+    };
 };
 
 export const updateTask = (id, formValues) => {
@@ -151,11 +149,11 @@ export const updateTask = (id, formValues) => {
         }).then((response) => {
             dispatch(requestSuccess());
             dispatch({ type: 'UPDATE_TASK', payload: response.data});
-            history.push('/tasks');
+            history.push('/');
         }).catch((err) => {
             dispatch(requestFailure(err));
         });        
-    }
+    };
 };
 
 export const deleteTask = (id) => {
@@ -169,9 +167,9 @@ export const deleteTask = (id) => {
             dispatch(requestSuccess());
             dispatch({ type: 'DELETE_TASK', payload: id});
             toast.success('Task was deleted!');
-            history.push('/tasks'); 
+            history.push('/'); 
         }).catch((err) => {
             dispatch(requestFailure(err.response.data));
         });
-    }
+    };
 };

@@ -86,7 +86,7 @@ class Auth extends React.Component {
             } else if (error.ModelState) {
                 errorText = this.iterateErrors(error.ModelState);
             } else if (error.response.data) {
-                errorText = error.response.data;
+                errorText = error.response.data.Message;
             } else {
                 errorText = 'Oops! Something went wrong';
             }

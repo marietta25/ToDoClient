@@ -23,7 +23,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/login" exact component={LoginForm} />
                     <Route path="/register" exact component={RegisterForm} />
-                    <PrivateRoute path="/tasks" exact component={TaskList} />
+                    <PrivateRoute path="/" exact component={TaskList} />
                     <PrivateRoute path="/tasks/new" exact component={TaskCreate} />
                     <PrivateRoute path="/tasks/view/:id" exact component={TaskItem} />
                     <PrivateRoute path="/tasks/update/:id" exact component={TaskUpdate} />
