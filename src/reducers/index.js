@@ -4,19 +4,6 @@ import { reducer as formReducer } from 'redux-form';
 import authReducer from './authReducer';
 import loaderReducer from './loaderReducer';
 
-/* export const errorReducer = (state = {}, action) => {
-    switch (action.type) {
-        case 'ERROR':
-        if (action.payload.Message) {
-            return { ...state, error: JSON.stringify(action.payload.Message) };
-        } else {
-            return { ...state, error: JSON.stringify(action.payload) };
-        }
-        default:
-            return state;
-    }
-}; */
-
 export const userReducer = (state = {}, action) => {    
     switch (action.type) {
         case 'FETCH_USER':
@@ -48,7 +35,6 @@ export const tasksReducer = (state = {}, action) => {
 };
 
 const appReducer = combineReducers({
-    //errors: errorReducer,
     auth: authReducer,
     user: userReducer,
     tasks: tasksReducer,

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import todoApi from '../api/todoApi';
 import history from '../history';
 import { requestBegin, requestSuccess, requestFailure } from './loaderActions';
@@ -19,7 +20,6 @@ export const fetchUser = (formValues) => {
             }
             dispatch({ type: 'FETCH_USER', payload: response.data });
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err.response.data));
         });
     };
@@ -40,7 +40,6 @@ export const getUserInfo = () => {
             sessionStorage.setItem('lastName', response.data.Lastname);
             dispatch({ type: 'GET_USERINFO', payload: response.data });
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err.response.data));
         });
     };
@@ -58,9 +57,9 @@ export const createUser = (formValues) => {
         }).then((response) => {
             dispatch(requestSuccess());
             dispatch({ type: 'CREATE_USER', payload: response.data });
+            toast.success("Profile created! You can now log in!")
             history.push('/login');
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err.response.data));
         });
     };
@@ -97,7 +96,6 @@ export const fetchTask = (id) => {
             dispatch(requestSuccess());
             dispatch({ type: 'FETCH_TASK', payload: response.data });
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err));
         });
     };
@@ -114,7 +112,6 @@ export const fetchTasks = () => {
             dispatch(requestSuccess());
             dispatch({ type: 'FETCH_TASKS', payload: response.data });
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err));
         });
     };
@@ -136,9 +133,9 @@ export const createTask = (formValues) => {
         }).then((response) => {
             dispatch(requestSuccess());
             dispatch({ type: 'CREATE_TASK', payload: response.data});
+            toast.success('New task added to list!');
             history.push('/tasks');
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err));
         });
     }
@@ -156,7 +153,6 @@ export const updateTask = (id, formValues) => {
             dispatch({ type: 'UPDATE_TASK', payload: response.data});
             history.push('/tasks');
         }).catch((err) => {
-            //dispatch({ type: 'ERROR', payload: err.response.data });
             dispatch(requestFailure(err));
         });        
     }
@@ -172,6 +168,7 @@ export const deleteTask = (id) => {
         }).then(() => {
             dispatch(requestSuccess());
             dispatch({ type: 'DELETE_TASK', payload: id});
+            toast.success('Task was deleted!');
             history.push('/tasks'); 
         }).catch((err) => {
             dispatch(requestFailure(err.response.data));
