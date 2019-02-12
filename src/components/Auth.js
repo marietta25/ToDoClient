@@ -101,7 +101,12 @@ class Auth extends React.Component {
         return (
             <div style={{ marginTop: 20, marginBottom: 30 }}>
                 <div>{this.renderErrors()}</div>
-                <h2>To-Do Tasks</h2>
+                <h1 className="ui header">
+                    <Link to='/'>
+                        <i className="tasks link icon" />
+                    </Link>
+                    <div className="content">To-Do Tasks</div>
+                </h1>
                 <div style={{ marginBottom: 10 }}>{this.renderUserData()}</div>
                 <div>{this.renderAuth()}</div>
             </div>
