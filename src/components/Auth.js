@@ -32,27 +32,18 @@ class Auth extends React.Component {
     }
 
     // Render logout button when user is logged in
-    // Render log in and register buttons when user is logged out
     renderAuth() {
-        if (this.props.isSignedIn === null) {
-            return null;
-        } else if (this.props.isSignedIn) {
+        if (this.props.isSignedIn) {
             return (
-                <button className="ui labeled icon button" onClick={this.onLogout}>
-                    <i className="sign out icon" />Log out
-                </button>
-            )
-        } else {
-            return (
-                <div >
-                <Link to='/login' className="ui labeled icon button">
-                    <i className="sign in icon" />Log in
-                </Link>
-                <Link to='/register' className="ui labeled icon button">
-                    <i className="user icon" />Register
-                </Link>
+                <div> 
+                    <Link style={{ marginBottom: 10 }} to='/' className="ui right floated labeled icon button" onClick={this.onLogout}>
+                        <i className="sign out icon" />Log out
+                    </Link>
+                    {this.renderUserData()}
                 </div>
             );
+        } else {
+            return null;
         }
     }
 
@@ -85,8 +76,10 @@ class Auth extends React.Component {
                 errorText = error.error_description;
             } else if (error.ModelState) {
                 errorText = this.iterateErrors(error.ModelState);
-            } else if (error.response.data) {
+            } else if (error.response.data.Message) {
                 errorText = error.response.data.Message;
+            } else if (error.response.data) {
+                errorText = error.response.data;
             } else {
                 errorText = 'Oops! Something went wrong';
             }
@@ -99,16 +92,17 @@ class Auth extends React.Component {
     
     render() {
         return (
-            <div style={{ marginTop: 20, marginBottom: 30 }}>
+            <div>
                 <div>{this.renderErrors()}</div>
-                <h1 className="ui header">
-                    <Link to='/'>
-                        <i className="tasks link icon" />
-                    </Link>
-                    <div className="content">To-Do Tasks</div>
-                </h1>
-                <div style={{ marginBottom: 10 }}>{this.renderUserData()}</div>
-                <div>{this.renderAuth()}</div>
+                <div className="ui basic sizer clearing segment" style={{ marginTop: 20, marginBottom: 30, padding: 0 }}>
+                    <div className="ui huge left floated header">
+                        <Link to='/'>
+                            <i className="tasks link icon" />
+                        </Link>
+                        <div className="content">To-Do Tasks</div>
+                    </div>            
+                    <div className="ui small right floated header">{this.renderAuth()}</div>
+                </div>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { createUser, logIn } from '../actions';
 import Loader from './Loader';
 
@@ -46,12 +47,17 @@ class RegisterForm extends React.Component {
                     <Field name="passwordConfirm" component={this.renderInput} label="Confirm Password" type="password" />
                     <button className="ui button primary">Register</button>
                 </form>
+                <div className="ui bottom attached warning message" style={{marginTop: 20 }}>
+                    <i className="icon help"></i>
+                    Already signed up? You can 
+                    <Link to='/login'> login here.</Link>
+                </div>
             </div>
         );
     }
 }
 
-// Prevent submitting new user without username and password
+// Prevent signing up user without username and password
 const validate = (formValues) => {
     const errors = {};
 

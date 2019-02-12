@@ -89,12 +89,15 @@ class TaskList extends React.Component {
     render() {
         return (
             <div>
-                <div style={{ marginBottom: 30 }}>
+                <div style={{ marginBottom: 50 }}>
                     <Link to={"/tasks/new"} className="ui labeled icon button primary">
                         <i className="plus icon" />
-                        Create new task
+                        CREATE NEW TASK
                     </Link>
                 </div>
+                <h2>Tasks
+
+                </h2>
                 <div className="ui celled list">{this.renderList()}</div>
             </div>
         );

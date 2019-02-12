@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchUser, logIn, getUserInfo } from '../actions';
 import Loader from './Loader';
 
@@ -43,11 +44,16 @@ class LoginForm extends React.Component {
         }
         return (
             <div>
-            <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
-                <Field name="username" component={this.renderInput} label="Username" type="text" />
-                <Field name="password" component={this.renderInput} label="Password" type="password" />
-                <button className="ui button primary">Login</button>
-            </form>
+                <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
+                    <Field name="username" component={this.renderInput} label="Username" type="text" />
+                    <Field name="password" component={this.renderInput} label="Password" type="password" />
+                    <button className="ui button primary">Login</button>
+                </form>
+                <div className="ui bottom attached warning message" style={{marginTop: 20 }}>
+                    <i className="icon help"></i>
+                    Don't have an account yet? 
+                    <Link to='/register'> Sign up here.</Link>
+                </div>
             </div>
         );
     }
