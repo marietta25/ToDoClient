@@ -16,7 +16,7 @@ class TaskItem extends React.Component {
     renderActions() {
         return (
             <React.Fragment>
-                <Link to="/tasks" className="ui button">OK</Link>
+                <Link to="/" className="ui button">OK</Link>
             </React.Fragment>
         )
     }
@@ -50,7 +50,7 @@ class TaskItem extends React.Component {
                     title="Task Contents"
                     content={this.renderContent()}
                     actions={this.renderActions()}
-                    onDismiss={() => history.push('/tasks')}
+                    onDismiss={() => history.push('/')}
                 />
             </div>
         );
