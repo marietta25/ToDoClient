@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logIn, logOut } from '../actions';
 
-class Auth extends React.Component {    
+class Header extends React.Component {    
     componentDidMount() {
         this.onAuthChange(sessionStorage.isSignedIn);
     }
@@ -117,4 +117,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {logIn, logOut })(Auth);
+export default connect(mapStateToProps, {logIn, logOut })(Header);

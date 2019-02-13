@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTasks, updateTask } from '../actions';
+import { fetchTasks, updateTask } from '../../actions';
 import { Link } from 'react-router-dom';
-import Loader from './Loader';
+import Loader from '../Loader';
 
 class TaskList extends React.Component {
     componentDidMount() {

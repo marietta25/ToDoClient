@@ -5,12 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import TaskList from './TaskList';
-import TaskCreate from './TaskCreate';
-import TaskItem from './TaskItem';
-import TaskDelete from './TaskDelete';
-import Auth from './Auth';
-import TaskUpdate from './TaskUpdate';
+import TaskList from './tasks/TaskList';
+import TaskCreate from './tasks/TaskCreate';
+import TaskItem from './tasks/TaskItem';
+import TaskDelete from './tasks/TaskDelete';
+import Header from './Header';
+import TaskUpdate from './tasks/TaskUpdate';
 import history from '../history';
 import { PrivateRoute } from './PrivateRoute';
 
@@ -19,7 +19,7 @@ class App extends React.Component {
     renderContent() {
         return (
             <div>
-                <Auth />
+                <Header />
                 <Switch>
                     <Route path="/" exact component={LoginForm} />
                     <Route path="/register" exact component={RegisterForm} />

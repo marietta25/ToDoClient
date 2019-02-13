@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createTask } from '../actions';
+import { createTask } from '../../actions';
 import TaskForm from './TaskForm';
-import Loader from './Loader';
+import Loader from '../Loader';
 
 class TaskCreate extends React.Component {
     onSubmit = (formValues) => {

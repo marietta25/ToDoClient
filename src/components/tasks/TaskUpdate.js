@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTask, updateTask } from '../actions';
+import { fetchTask, updateTask } from '../../actions';
 import TaskForm from './TaskForm';
-import Loader from './Loader';
+import Loader from '../Loader';
 
 class TaskUpdate extends React.Component {
     componentDidMount() {

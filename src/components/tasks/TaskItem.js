@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Modal from './Modal';
-import history from '../history';
-import { fetchTask } from '../actions';
-import Loader from './Loader';
+import Modal from '../Modal';
+import history from '../../history';
+import { fetchTask } from '../../actions';
+import Loader from '../Loader';
 
 
 class TaskItem extends React.Component {
