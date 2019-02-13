@@ -9,7 +9,7 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
             sessionStorage.getItem('jwtToken') !== 'null' ? (
                 <Component {...props} />
             ) : (
-                <Redirect to={{ pathname: '/login', state: { from: props.location }}} />
+                <Redirect to={{ pathname: '/', state: { from: props.location }}} />
             )
         }
     />

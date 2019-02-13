@@ -56,7 +56,7 @@ export const createUser = (formValues) => {
             dispatch(requestSuccess());
             dispatch({ type: 'CREATE_USER', payload: response.data });
             toast.success("Profile created! You can now log in!")
-            history.push('/login');
+            history.push('/');
         }).catch((err) => {
             dispatch(requestFailure(err.response.data));
         });
@@ -64,7 +64,7 @@ export const createUser = (formValues) => {
 };
 
 export const logIn = (token) => {
-    history.push('/');
+    history.push('/tasks');
     return {
         type: 'LOG_IN',
         payload: token
@@ -132,7 +132,7 @@ export const createTask = (formValues) => {
             dispatch(requestSuccess());
             dispatch({ type: 'CREATE_TASK', payload: response.data});
             toast.success('New task added to list!');
-            history.push('/');
+            history.push('/tasks');
         }).catch((err) => {
             dispatch(requestFailure(err));
         });
@@ -149,7 +149,7 @@ export const updateTask = (id, formValues) => {
         }).then((response) => {
             dispatch(requestSuccess());
             dispatch({ type: 'UPDATE_TASK', payload: response.data});
-            history.push('/');
+            history.push('/tasks');
         }).catch((err) => {
             dispatch(requestFailure(err));
         });        
@@ -167,7 +167,7 @@ export const deleteTask = (id) => {
             dispatch(requestSuccess());
             dispatch({ type: 'DELETE_TASK', payload: id});
             toast.success('Task was deleted!');
-            history.push('/'); 
+            history.push('/tasks'); 
         }).catch((err) => {
             dispatch(requestFailure(err.response.data));
         });

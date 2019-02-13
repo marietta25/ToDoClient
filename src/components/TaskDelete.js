@@ -19,7 +19,7 @@ class TaskDelete extends React.Component {
                     onClick={() => this.props.deleteTask(this.props.match.params.id)} 
                     className="ui button negative">Delete
                 </button>
-                <Link to="/" className="ui button">Cancel</Link>
+                <Link to="/tasks" className="ui button">Cancel</Link>
             </React.Fragment>
         )
     }
@@ -43,7 +43,7 @@ class TaskDelete extends React.Component {
                     title="Delete task"
                     content={this.renderContent()}
                     actions={this.renderActions()}
-                    onDismiss={() => history.push('/')}
+                    onDismiss={() => history.push('/tasks')}
                 />
             </div>
         );

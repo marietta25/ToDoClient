@@ -96,7 +96,7 @@ class Auth extends React.Component {
                 <div>{this.renderErrors()}</div>
                 <div className="ui basic sizer clearing segment" style={{ marginTop: 20, marginBottom: 30, padding: 0 }}>
                     <div className="ui huge left floated header">
-                        <Link to='/'>
+                        <Link to='/tasks'>
                             <i className="tasks link icon" />
                         </Link>
                         <div className="content">To-Do Tasks</div>

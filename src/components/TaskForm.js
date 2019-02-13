@@ -32,7 +32,7 @@ class TaskForm extends React.Component {
             <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
                 <Field name="Title" component={this.renderInput} label="Title" />
                 <Field name="Desc" component={this.renderInput} label="Description" />
-                <Link to={'/'} className="ui button">Cancel</Link>
+                <Link to={'/tasks'} className="ui button">Cancel</Link>
                 <button className="ui button primary">Submit</button>
             </form>
         );

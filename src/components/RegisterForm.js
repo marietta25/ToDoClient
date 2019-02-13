@@ -50,7 +50,7 @@ class RegisterForm extends React.Component {
                 <div className="ui bottom attached warning message" style={{marginTop: 20 }}>
                     <i className="icon help"></i>
                     Already signed up? You can 
-                    <Link to='/login'> login here.</Link>
+                    <Link to='/'> login here.</Link>
                 </div>
             </div>
         );
