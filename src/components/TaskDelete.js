@@ -29,7 +29,7 @@ class TaskDelete extends React.Component {
         if (!this.props.task) {
             return 'Are you sure you want to delete this task?'
         }
-        return `Are you sure you want to task: ${this.props.task.Title}`
+        return `Are you sure you want to delete task: ${this.props.task.Title}`
     }
     
     // Render modal
