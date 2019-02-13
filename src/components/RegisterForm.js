@@ -42,7 +42,7 @@ class RegisterForm extends React.Component {
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
                     <Field name="firstname" component={this.renderInput} label="First name" type="text" />
                     <Field name="lastname" component={this.renderInput} label="Last name" type="text" />
-                    <Field name="username" component={this.renderInput} label="Username" type="text" />
+                    <Field name="username" component={this.renderInput} label="Username" type="email" />
                     <Field name="password" component={this.renderInput} label="Password" type="password" />
                     <Field name="passwordConfirm" component={this.renderInput} label="Confirm Password" type="password" />
                     <button className="ui button primary">Register</button>
@@ -60,14 +60,15 @@ class RegisterForm extends React.Component {
 // Prevent signing up user without username and password
 const validate = (formValues) => {
     const errors = {};
+    const { username, password, passwordConfirm } = formValues;
 
-    if (!formValues.username) {
+    if (!username || username.trim() === "") {
         errors.username = "Please enter username";
     }
-    if (!formValues.password) {
+    if (!password) {
         errors.password = "Please enter password";
     }
-    if (!formValues.passwordConfirm) {
+    if (!passwordConfirm) {
         errors.passwordConfirm = "Please enter password";
     }
     return errors;

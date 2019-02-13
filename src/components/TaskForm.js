@@ -43,7 +43,7 @@ class TaskForm extends React.Component {
 const validate = (formValues) => {
     const errors = {};
 
-    if (!formValues.Title) {
+    if (!formValues.Title || formValues.Title.trim() === "") {
         errors.Title = "Please enter task title";
     }
     return errors;
